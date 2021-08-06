@@ -8,11 +8,12 @@ const defaultCartState = {
   items: [],
   totalAmount: 0,
 };
+// ===============>
+
 const cartReducer = (state, action) => {
   if (action.type === 'ADD') {
     const updatedItems = state.items.concat(action.item);
-    const updatedTotalAmount =
-      state.totalAmount + action.item.price * action.item.amount;
+    const updatedTotalAmount = state.totalAmount + action.item.amount;
 
     return {
       items: updatedItems,
@@ -38,8 +39,8 @@ const CartProvider = props => {
 
   // This is the actual context that gets updated and the initial values
   const cartContext = {
-    items: [],
-    amount: 0,
+    items: cartState.items,
+    amount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   };
